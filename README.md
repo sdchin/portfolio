@@ -6,8 +6,8 @@ This website is part of a school assignment for CSE 134B, Web Client Languages W
 
 ## Learning Goals
 
-1. User centered design
-2. Semantic HTML
-3. Progressive enhancement
+1. Standards based CSS
+2. Performance: Image and font optimization
+3. Responsive web design
 
-Last updated: 01/23/2023
+Last updated: 02/13/2023
