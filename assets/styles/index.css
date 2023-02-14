@@ -1,0 +1,44 @@
+/**
+  * Homepage styles
+  *
+  */
+
+:root {
+  --testimonial-max-width: 40ch;
+}
+
+.site-nav {
+  align-items: center;
+  display: flex;
+  justify-content: space-evenly;
+  list-style-type: none;
+  padding-inline-start: 0;
+}
+
+.testimonial-section {
+  align-items: center;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  list-style-type: none;
+  padding-inline-start: 0;
+}
+
+.testimonial {
+  display: flex;
+  flex-direction: column;
+  max-width: var(--testimonial-max-width);
+}
+
+.socials {
+  display: flex;
+  list-style-type: none;
+  padding-inline-start: 0;
+}
+
+footer {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
