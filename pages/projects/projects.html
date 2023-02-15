@@ -4,11 +4,12 @@
     <meta charset="utf-8" />
     <title>Steven Chin - Projects</title>
     <link rel="icon" href="/assets/images/logo.svg" />
+    <link rel="stylesheet" href="/assets/styles/projects.css" />
   </head>
   <body>
     <header>
       <nav>
-        <ul>
+        <ul class="site-nav">
           <li>
             <a href="/pages/about.html">About</a>
           </li>
@@ -29,20 +30,25 @@
         </ul>
       </nav>
     </header>
-    <main>
+    <main class="project-main">
       <h1>Projects</h1>
-      <picture>
+      <picture class="featured">
         <source srcset="/assets/images/boba.webp" type="image/webp" />
-        <img src="/assets/images/boba.JPG" alt="Boba" height="200" />
+        <img
+          src="/assets/images/boba.JPG"
+          class="featured"
+          alt="Boba"
+          height="200"
+        />
       </picture>
-      <ul>
+      <ul class="project-grid">
         <li>
-          <article>
+          <article class="project-card">
             <picture>
               <source srcset="/assets/images/boba.webp" type="image/webp" />
               <img src="/assets/images/boba.JPG" alt="Boba" height="200" />
             </picture>
-            <h2>Project 1</h2>
+            <h2 class="project-heading">Project 1</h2>
             <p>
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industry's standard dummy text
@@ -54,12 +60,12 @@
           </article>
         </li>
         <li>
-          <article>
+          <article class="project-card">
             <picture>
               <source srcset="/assets/images/boba.webp" type="image/webp" />
               <img src="/assets/images/boba.JPG" alt="Boba" height="200" />
             </picture>
-            <h2>Project 2</h2>
+            <h2 class="project-heading">Project 2</h2>
             <p>
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industry's standard dummy text
@@ -71,7 +77,7 @@
           </article>
         </li>
         <li>
-          <article>
+          <article class="project-card">
             <picture>
               <source srcset="/assets/images/boba.webp" type="image/webp" />
               <img
@@ -81,7 +87,7 @@
                 loading="lazy"
               />
             </picture>
-            <h2>Project 3</h2>
+            <h2 class="project-heading">Project 3</h2>
             <p>
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industry's standard dummy text
@@ -93,7 +99,7 @@
           </article>
         </li>
         <li>
-          <article>
+          <article class="project-card">
             <picture>
               <source srcset="/assets/images/boba.webp" type="image/webp" />
               <img
@@ -103,7 +109,7 @@
                 loading="lazy"
               />
             </picture>
-            <h2>Project 4</h2>
+            <h2 class="project-heading">Project 4</h2>
             <p>
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industry's standard dummy text
@@ -118,7 +124,7 @@
     </main>
     <footer>
       <address>
-        <ul>
+        <ul class="socials">
           <li>
             <a href="https://github.com/sdchin">
               <img

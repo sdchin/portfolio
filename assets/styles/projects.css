@@ -1,0 +1,48 @@
+/**
+  * Projects page styles
+  *
+  */
+
+.site-nav {
+  align-items: center;
+  display: flex;
+  justify-content: space-evenly;
+  list-style-type: none;
+  padding-inline-start: 0;
+}
+
+.socials {
+  display: flex;
+  list-style-type: none;
+  padding-inline-start: 0;
+}
+
+footer {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.featured {
+  display: flex;
+  justify-content: center;
+}
+
+.project-grid {
+  display: grid;
+  gap: 50px;
+  grid-template-columns: repeat(auto-fit, minmax(60ch, 1fr));
+  list-style-type: none;
+  padding: 75px;
+}
+
+.project-card {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-heading {
+  text-align: center;
+}
