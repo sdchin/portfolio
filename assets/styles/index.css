@@ -7,6 +7,13 @@
   --testimonial-max-width: 40ch;
 }
 
+.page-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+  height: 100lvh;
+}
+
 .site-nav {
   align-items: center;
   display: flex;
@@ -41,4 +48,26 @@ footer {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+main {
+  padding: 0 75px;
+}
+
+.featured {
+  display: flex;
+  justify-content: center;
+}
+
+.featured > img {
+  width: 100%;
+}
+
+.testimonial-picture {
+  display: flex;
+  justify-content: center;
+}
+
+.testimonial-heading {
+  align-self: center;
 }
