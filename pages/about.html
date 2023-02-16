@@ -2,19 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Steven Chin - About</title>
     <link rel="icon" href="/assets/images/logo.svg" />
-    <template id="toast">
-      <div>
-        <p>You've successfully changed my picture!</p>
-        <button>Close</button>
-      </div>
-    </template>
+    <link rel="stylesheet" href="/assets/styles/about.css" />
   </head>
-  <body>
+  <body class="page-grid">
     <header>
       <nav>
-        <ul>
+        <ul class="site-nav">
           <li>
             <a href="/pages/about.html">About</a>
           </li>
@@ -37,83 +33,50 @@
     </header>
     <main>
       <h1>About</h1>
-      <p>
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s, when an unknown printer took a galley of type and
-        scrambled it to make a type specimen book. It has survived not only five
-        centuries, but also the leap into electronic typesetting, remaining
-        essentially unchanged.
-      </p>
-      <table>
-        <caption>
-          My Skills
-        </caption>
-        <thead>
-          <tr>
-            <th scope="col">Skills</th>
-            <th scope="col">Proficiency (1-10)</th>
-          </tr>
-        </thead>
-        <tr>
-          <td>Coding</td>
-          <td>8</td>
-        </tr>
-        <tr>
-          <td>Designing</td>
-          <td>7</td>
-        </tr>
-        <tr>
-          <td>Drinking boba</td>
-          <td>10</td>
-        </tr>
-      </table>
-
-      <table>
-        <caption>
-          My Favorite Foods
-        </caption>
-        <colgroup>
-          <col />
-          <col span="2" />
-          <col span="2" />
-        </colgroup>
-        <thead>
-          <tr>
-            <th scope="col">Cuisine</th>
-            <th scope="col">1st favorite</th>
-            <th scope="col">2nd favorite</th>
-            <th scope="col">3rd favorite</th>
-            <th scope="col">4th favorite</th>
-          </tr>
-        </thead>
-        <tr>
-          <td>Chinese</td>
-          <td>Roast pork</td>
-          <td>Roast duck</td>
-          <td>Mango pudding</td>
-          <td>Fried rice</td>
-        </tr>
-        <tr>
-          <td>Korean</td>
-          <td>KBBQ</td>
-          <td>Beef radish soup</td>
-          <td>Bingsu</td>
-          <td>Raw crab</td>
-        </tr>
-      </table>
-      <picture>
-        <source srcset="/assets/images/me.webp" type="image/webp" />
-        <img src="/assets/images/me.jpeg" alt="Steven Chin" height="200" />
-      </picture>
-      <button>
-        Press this button! Using JavaScript, I could make my picture change and
-        make a notification appear using the template I've defined on this page.
-      </button>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s, when an unknown printer took a galley of type
+            and scrambled it to make a type specimen book. It has survived not
+            only five centuries, but also the leap into electronic typesetting,
+            remaining essentially unchanged.
+          </p>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s, when an unknown printer took a galley of type
+            and scrambled it to make a type specimen book. It has survived not
+            only five centuries, but also the leap into electronic typesetting,
+            remaining essentially unchanged.
+          </p>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s, when an unknown printer took a galley of type
+            and scrambled it to make a type specimen book. It has survived not
+            only five centuries, but also the leap into electronic typesetting,
+            remaining essentially unchanged.
+          </p>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s, when an unknown printer took a galley of type
+            and scrambled it to make a type specimen book. It has survived not
+            only five centuries, but also the leap into electronic typesetting,
+            remaining essentially unchanged.
+          </p>
+        </div>
+        <picture class="headshot">
+          <source srcset="/assets/images/me.webp" type="image/webp" />
+          <img src="/assets/images/me.jpeg" alt="Steven Chin" height="200" />
+        </picture>
+      </div>
     </main>
     <footer>
       <address>
-        <ul>
+        <ul class="socials">
           <li>
             <a href="https://github.com/sdchin">
               <img
