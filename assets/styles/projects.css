@@ -46,3 +46,7 @@ footer {
 .project-heading {
   text-align: center;
 }
+
+.project-picture > img {
+  max-width: 100%;
+}
