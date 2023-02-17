@@ -28,6 +28,22 @@
   padding-inline-start: 0;
 }
 
+.site-nav > li > a {
+  text-decoration: underline transparent;
+}
+
+.site-nav > li > a:not(.logo-link):hover {
+  text-decoration-color: black;
+}
+
+.logo {
+  transition: transform 400ms ease-in-out;
+}
+
+.logo:hover {
+  transform: rotate(180deg);
+}
+
 .testimonial-section {
   align-items: center;
   display: flex;
