@@ -4,11 +4,12 @@
     <meta charset="utf-8" />
     <title>Steven Chin - Contact</title>
     <link rel="icon" href="/assets/images/logo.svg" />
+    <link rel="stylesheet" href="/assets/styles/contact.css" />
   </head>
-  <body>
+  <body class="page-grid">
     <header>
       <nav>
-        <ul>
+        <ul class="site-nav">
           <li>
             <a href="/pages/about.html">About</a>
           </li>
@@ -29,28 +30,37 @@
         </ul>
       </nav>
     </header>
-    <main>
-      <h1>Contact</h1>
-      <p>
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry.
-      </p>
-      <form method="post">
-        <label for="name">Name*</label>
-        <input type="text" name="name" id="name" required="required" />
-
-        <label for="email">Email*</label>
-        <input type="email" name="email" id="email" required="required" />
-
-        <label for="message">Message*</label>
-        <textarea name="message" id="message" required="required"></textarea>
-
-        <input type="submit" />
-      </form>
+    <main class="main-content">
+      <div class="content-grid">
+        <h1>Contact</h1>
+        <p>
+          Fill out the contact form below with your information to contact
+          Steven Chin. Required fields are marked with
+          <span aria-label="required">*</span>.
+        </p>
+        <form method="post" class="form-grid">
+          <label for="name"
+            >Name:
+            <span aria-label="required" title="required">*</span>
+          </label>
+          <input type="text" name="name" id="name" required="required" />
+          <label for="email"
+            >Email:
+            <span aria-label="required" title="required">*</span>
+          </label>
+          <input type="email" name="email" id="email" required="required" />
+          <label for="message"
+            >Message:
+            <span aria-label="required" title="required">*</span>
+          </label>
+          <textarea name="message" id="message" required="required"></textarea>
+          <button type="submit" class="submit-button">Submit</button>
+        </form>
+      </div>
     </main>
     <footer>
       <address>
-        <ul>
+        <ul class="socials">
           <li>
             <a href="https://github.com/sdchin">
               <img

@@ -1,0 +1,77 @@
+/**
+  * Contact page styles
+  *
+  */
+
+:root {
+  --content-width: 50ch;
+  --form-spacing: 10px;
+  --invalid-submit-opacity: 0.3;
+  --num-form-children: 7;
+  --submit-button-width: 15ch;
+}
+
+.page-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+  height: 100lvh;
+}
+
+.site-nav {
+  align-items: center;
+  display: flex;
+  justify-content: space-evenly;
+  list-style-type: none;
+  padding-inline-start: 0;
+}
+
+.socials {
+  display: flex;
+  list-style-type: none;
+  padding-inline-start: 0;
+}
+
+footer {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+main {
+  padding: 0 75px;
+}
+
+.main-content {
+  display: flex;
+  justify-content: center;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  width: var(--content-width);
+}
+
+.form-grid {
+  align-items: start;
+  display: grid;
+  gap: var(--form-spacing);
+  grid-template-rows: repeat(var(--num-form-children), max-content);
+  max-width: var(--content-width);
+}
+
+.form-grid > textarea {
+  resize: none;
+}
+
+.submit-button {
+  justify-self: end;
+  width: var(--submit-button-width);
+}
+
+.form-grid:invalid .submit-button {
+  opacity: var(--invalid-submit-opacity);
+  pointer-events: none;
+}
