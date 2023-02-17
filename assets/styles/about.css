@@ -3,6 +3,12 @@
   *
   */
 
+@import url("https://fonts.googleapis.com/css2?family=Assistant&display=swap");
+
+* {
+  font-family: "Assistant", sans-serif;
+}
+
 .page-grid {
   display: grid;
   grid-template-columns: 1fr;
