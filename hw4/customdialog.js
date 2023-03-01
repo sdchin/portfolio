@@ -7,7 +7,7 @@ function init() {
   addSaferPromptListener();
 }
 
-function createDialog(message) {
+function createAlert(message) {
   const dialog = document.createElement("dialog");
   dialog.innerHTML = `
     <p>${message}</p>
@@ -19,11 +19,24 @@ function createDialog(message) {
   return dialog;
 }
 
+function createConfirm(message) {
+  const dialog = document.createElement("dialog");
+  dialog.innerHTML = `
+    <p>${message}</p>
+    <form method="dialog">
+      <button value="ok">OK</button>
+      <button value="cancel">Cancel</button>
+    </form>
+  `;
+  document.body.appendChild(dialog);
+  return dialog;
+}
+
 function addAlertListener() {
   let alertButton = document.getElementById("alert");
   alertButton.addEventListener("click", () => {
     const message = "Alert pressed!";
-    let dialog = createDialog(message);
+    let dialog = createAlert(message);
     dialog.showModal();
   });
 }
@@ -37,10 +50,13 @@ function addConfirmListener() {
     const delay = 10;
     setTimeout(() => {
       const confirmMessage = "Do you confirm?";
-      let confirmed = window.confirm(confirmMessage);
+      let dialog = createConfirm(confirmMessage);
+      dialog.showModal();
 
-      const outputMessage = `The value returned by the confirm method is : ${confirmed}`;
-      output.textContent = outputMessage;
+      dialog.addEventListener("close", () => {
+        const outputMessage = `The value returned by the confirm method is : ${dialog.returnValue}`;
+        output.textContent = outputMessage;
+      });
     }, delay);
   });
 }
