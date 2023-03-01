@@ -9,7 +9,7 @@
   <body>
     <button id="alert">Alert</button>
     <button id="confirm">Confirm</button>
-    <button>Prompt</button>
+    <button id="prompt">Prompt</button>
     <button>Safer Prompt</button>
     <output id="output"></output>
 
@@ -19,6 +19,7 @@
       function init() {
         addAlertListener();
         addConfirmListener();
+        addPromptListener();
       }
 
       function addAlertListener() {
@@ -42,6 +43,26 @@
 
             const outputMessage = `The value returned by the confirm method is : ${confirmed}`;
             output.textContent = outputMessage;
+          }, delay);
+        });
+      }
+
+      function addPromptListener() {
+        let promptButton = document.getElementById("prompt");
+        promptButton.addEventListener("click", () => {
+          const output = document.getElementById("output");
+          output.textContent = "";
+
+          const delay = 10;
+          setTimeout(() => {
+            const promptMessage = "Type something: ";
+            let userInput = window.prompt(promptMessage);
+
+            const noInputMessage = "User didn't enter anything";
+            const outputMessage = userInput
+              ? `Prompt result : ${userInput}`
+              : noInputMessage;
+            output.innerHTML = outputMessage;
           }, delay);
         });
       }
