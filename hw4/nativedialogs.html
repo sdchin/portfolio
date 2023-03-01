@@ -7,10 +7,26 @@
     <title>Simple Dialogs</title>
   </head>
   <body>
-    <button>Alert</button>
+    <button id="alert">Alert</button>
     <button>Confirm</button>
     <button>Prompt</button>
     <button>Safer Prompt</button>
     <output></output>
+
+    <script type="module">
+      window.addEventListener("DOMContentLoaded", init);
+
+      function init() {
+        addAlertListener();
+      }
+
+      function addAlertListener() {
+        let alertButton = document.getElementById("alert");
+        alertButton.addEventListener("click", () => {
+          const message = "Alert pressed!";
+          alert(message);
+        });
+      }
+    </script>
   </body>
 </html>
