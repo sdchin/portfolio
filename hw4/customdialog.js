@@ -96,7 +96,7 @@ function addPromptListener() {
       dialog.addEventListener("close", () => {
         const noInputMessage = "User didn't enter anything";
         const outputMessage =
-          dialog.returnValue !== "cancel"
+          dialog.returnValue !== "cancel" && dialog.returnValue !== "default"
             ? `Prompt result : ${dialog.returnValue}`
             : noInputMessage;
         output.innerHTML = outputMessage;
