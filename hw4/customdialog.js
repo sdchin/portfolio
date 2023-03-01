@@ -19,6 +19,26 @@ function createAlert(message) {
   return dialog;
 }
 
+function createPrompt(message) {
+  const dialog = document.createElement("dialog");
+  dialog.innerHTML = `
+    <p>${message}</p>
+    <form method="dialog">
+      <input type="text">
+      <button id="ok" value="default">OK</button>
+      <button value="cancel">Cancel</button>
+    </form>
+  `;
+
+  const input = dialog.querySelector("input");
+  input.addEventListener("input", () => {
+    const okButton = dialog.querySelector("#ok");
+    okButton.value = input.value;
+  });
+  document.body.appendChild(dialog);
+  return dialog;
+}
+
 function createConfirm(message) {
   const dialog = document.createElement("dialog");
   dialog.innerHTML = `
@@ -70,13 +90,17 @@ function addPromptListener() {
     const delay = 10;
     setTimeout(() => {
       const promptMessage = "Type something: ";
-      let userInput = window.prompt(promptMessage);
+      let dialog = createPrompt(promptMessage);
+      dialog.showModal();
 
-      const noInputMessage = "User didn't enter anything";
-      const outputMessage = userInput
-        ? `Prompt result : ${userInput}`
-        : noInputMessage;
-      output.innerHTML = outputMessage;
+      dialog.addEventListener("close", () => {
+        const noInputMessage = "User didn't enter anything";
+        const outputMessage =
+          dialog.returnValue !== "cancel"
+            ? `Prompt result : ${dialog.returnValue}`
+            : noInputMessage;
+        output.innerHTML = outputMessage;
+      });
     }, delay);
   });
 }
