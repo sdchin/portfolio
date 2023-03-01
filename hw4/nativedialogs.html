@@ -8,16 +8,17 @@
   </head>
   <body>
     <button id="alert">Alert</button>
-    <button>Confirm</button>
+    <button id="confirm">Confirm</button>
     <button>Prompt</button>
     <button>Safer Prompt</button>
-    <output></output>
+    <output id="output"></output>
 
     <script type="module">
       window.addEventListener("DOMContentLoaded", init);
 
       function init() {
         addAlertListener();
+        addConfirmListener();
       }
 
       function addAlertListener() {
@@ -25,6 +26,23 @@
         alertButton.addEventListener("click", () => {
           const message = "Alert pressed!";
           alert(message);
+        });
+      }
+
+      function addConfirmListener() {
+        let confirmButton = document.getElementById("confirm");
+        confirmButton.addEventListener("click", () => {
+          const output = document.getElementById("output");
+          output.textContent = "";
+
+          const delay = 10;
+          setTimeout(() => {
+            const confirmMessage = "Do you confirm?";
+            let confirmed = window.confirm(confirmMessage);
+
+            const outputMessage = `Confirm result: ${confirmed}`;
+            output.textContent = outputMessage;
+          }, delay);
         });
       }
     </script>
