@@ -1,4 +1,5 @@
 import { Post } from "./Post.js";
+import * as BlogDialog from "./blogdialog.js";
 
 window.addEventListener("DOMContentLoaded", init);
 
@@ -11,14 +12,36 @@ function init() {
 }
 
 function populatePage(posts) {
-  for (let post of posts) {
-    const article = document.createElement("article");
-    const contents = `
-      <h2>${post.title}<\h2>
-      <time datetime="${post.date}">${post.date}</time>
-      <p>${post.summary}</p>
-    `;
-    article.innerHTML = contents;
-    document.body.prepend(article);
+  for (let postObj of posts) {
+    let post = createPost(postObj);
+    document.body.prepend(post);
   }
+}
+
+function createPost(postObj) {
+  const article = document.createElement("article");
+  const contents = `
+      <h2>${postObj.title}<\h2>
+      <time datetime="${postObj.date}">${postObj.date}</time>
+      <p>${postObj.summary}</p>
+      <button id="edit">Edit</button>
+      <button id="delete">Delete</button>
+    `;
+  article.innerHTML = contents;
+
+  let editButton = article.querySelector("#edit");
+  editButton.addEventListener("click", () => {
+    const message = "Edit the fields and click confirm when you're done.";
+    const dialog = BlogDialog.createEdit(message);
+    dialog.showModal();
+  });
+
+  let deleteButton = article.querySelector("#delete");
+  deleteButton.addEventListener("click", () => {
+    const message = "Are you sure you want to delete this blog post?";
+    const dialog = BlogDialog.createDelete(message);
+    dialog.showModal();
+  });
+
+  return article;
 }
