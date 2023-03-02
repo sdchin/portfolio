@@ -6,6 +6,10 @@ defaultArray.push(new Post("Cats", "2023-01-01", "I love this movie!"));
 defaultArray.push(new Post("JavaScript", "2023-03-01", "GRR!"));
 defaultArray.push(new Post("Bananas", "2019-02-04", "Fave! Yum!"));
 
+for (const postObj of defaultArray) {
+  storePost(postObj);
+}
+
 window.addEventListener("DOMContentLoaded", init);
 
 function init() {
@@ -68,4 +72,15 @@ function createPost(postObj) {
 
 function deletePost(target) {
   defaultArray = defaultArray.filter((postObj) => postObj !== target);
+}
+
+function storePost(postObj) {
+  while (localStorage.getItem(postObj.id)) {
+    if (localStorage.getItem(postObj.id) !== JSON.stringify(postObj)) {
+      postObj.updateId();
+    } else {
+      return;
+    }
+  }
+  localStorage.setItem(postObj.id, JSON.stringify(postObj));
 }
