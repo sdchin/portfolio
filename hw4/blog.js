@@ -60,7 +60,8 @@ function editPost(post, postObj, dialog) {
   localStorage.setItem(localObj.id, JSON.stringify(localObj));
 }
 
-function deletePost(postObj) {
+function deletePost(post, postObj) {
+  post.remove();
   localStorage.removeItem(postObj.id);
 }
 
@@ -95,8 +96,7 @@ function deleteHandler(post, postObj) {
 
   dialog.addEventListener("close", () => {
     if (dialog.returnValue === "delete") {
-      deletePost(postObj);
-      post.remove();
+      deletePost(post, postObj);
     }
     dialog.remove();
   });
