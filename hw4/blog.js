@@ -5,6 +5,8 @@ window.addEventListener("DOMContentLoaded", init);
 
 function init() {
   prepopulate();
+  let addButton = document.getElementById("add");
+  addButton.addEventListener("click", addHandler);
 }
 
 function prepopulate() {
@@ -14,13 +16,12 @@ function prepopulate() {
   defaultPosts.push(new Post("Bananas", "2019-02-04", "Fave! Yum!"));
 
   for (let postObj of defaultPosts) {
-    storePost(postObj);
-    let post = createPost(postObj);
+    let post = addPost(postObj);
     document.body.prepend(post);
   }
 }
 
-function createPost(postObj) {
+function addPost(postObj) {
   const post = document.createElement("article");
   const contents = `
       <h2>${postObj.title}</h2>
@@ -41,6 +42,7 @@ function createPost(postObj) {
     deleteHandler(post, postObj);
   });
 
+  storePost(postObj);
   return post;
 }
 
@@ -74,6 +76,24 @@ function storePost(postObj) {
     }
   }
   localStorage.setItem(postObj.id, JSON.stringify(postObj));
+}
+
+function addHandler() {
+  const message = "Fill in the fields and click confirm when you're done.";
+  const dialog = BlogDialog.createAdd(message);
+  dialog.showModal();
+
+  dialog.addEventListener("close", () => {
+    if (dialog.returnValue === "add") {
+      let title = dialog.querySelector("#title").value;
+      let date = dialog.querySelector("#date").value;
+      let summary = dialog.querySelector("#summary").value;
+      let postObj = new Post(title, date, summary);
+      let post = addPost(postObj);
+      document.body.prepend(post);
+    }
+    dialog.remove();
+  });
 }
 
 function editHandler(post, postObj) {
