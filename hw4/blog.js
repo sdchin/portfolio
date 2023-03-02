@@ -33,8 +33,20 @@ function createPost(postObj) {
   let editButton = article.querySelector("#edit");
   editButton.addEventListener("click", () => {
     const message = "Edit the fields and click confirm when you're done.";
-    const dialog = BlogDialog.createEdit(message);
+    const dialog = BlogDialog.createEdit(message, postObj);
     dialog.showModal();
+
+    dialog.addEventListener("close", () => {
+      if (dialog.returnValue === "ok") {
+        postObj.title = dialog.querySelector("#newtitle").value;
+        postObj.date = dialog.querySelector("#newdate").value;
+        postObj.summary = dialog.querySelector("#newsummary").value;
+
+        article.querySelector("h2").textContent = postObj.title;
+        article.querySelector("time").textContent = postObj.date;
+        article.querySelector("p").textContent = postObj.summary;
+      }
+    });
   });
 
   let deleteButton = article.querySelector("#delete");
