@@ -68,13 +68,10 @@ function deletePost(post, postObj) {
 }
 
 function storePost(postObj) {
-  while (localStorage.getItem(postObj.id)) {
-    if (localStorage.getItem(postObj.id) !== JSON.stringify(postObj)) {
-      postObj.updateId();
-    } else {
-      return;
-    }
+  if (localStorage.getItem(postObj.id)) {
+    return;
   }
+
   localStorage.setItem(postObj.id, JSON.stringify(postObj));
 }
 
