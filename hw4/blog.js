@@ -1,13 +1,14 @@
 import { Post } from "./Post.js";
 import * as BlogDialog from "./blogdialog.js";
 
+let defaultArray = new Array();
+defaultArray.push(new Post("Cats", "2023-01-01", "I love this movie!"));
+defaultArray.push(new Post("JavaScript", "2023-03-01", "GRR!"));
+defaultArray.push(new Post("Bananas", "2019-02-04", "Fave! Yum!"));
+
 window.addEventListener("DOMContentLoaded", init);
 
 function init() {
-  const defaultArray = new Array();
-  defaultArray.push(new Post("Cats", "2023-01-01", "I love this movie!"));
-  defaultArray.push(new Post("JavaScript", "2023-03-01", "GRR!"));
-  defaultArray.push(new Post("Bananas", "2019-02-04", "Fave! Yum!"));
   populatePage(defaultArray);
 }
 
@@ -41,7 +42,18 @@ function createPost(postObj) {
     const message = "Are you sure you want to delete this blog post?";
     const dialog = BlogDialog.createDelete(message);
     dialog.showModal();
+
+    dialog.addEventListener("close", () => {
+      if (dialog.returnValue === "delete") {
+        deletePost(postObj);
+        article.remove();
+      }
+    });
   });
 
   return article;
+}
+
+function deletePost(target) {
+  defaultArray = defaultArray.filter((postObj) => postObj !== target);
 }
