@@ -21,17 +21,17 @@ function prepopulate() {
 }
 
 function createPost(postObj) {
-  const article = document.createElement("article");
+  const post = document.createElement("article");
   const contents = `
-      <h2>${postObj.title}<\h2>
+      <h2>${postObj.title}</h2>
       <time datetime="${postObj.date}">${postObj.date}</time>
       <p>${postObj.summary}</p>
-      <button id="edit">Edit</button>
-      <button id="delete">Delete</button>
+      <button class="edit">Edit</button>
+      <button class="delete">Delete</button>
     `;
-  article.innerHTML = contents;
+  post.innerHTML = contents;
 
-  let editButton = article.querySelector("#edit");
+  let editButton = post.querySelector(".edit");
   editButton.addEventListener("click", () => {
     const message = "Edit the fields and click confirm when you're done.";
     const dialog = BlogDialog.createEdit(message, postObj);
@@ -43,14 +43,14 @@ function createPost(postObj) {
         postObj.date = dialog.querySelector("#newdate").value;
         postObj.summary = dialog.querySelector("#newsummary").value;
 
-        article.querySelector("h2").textContent = postObj.title;
-        article.querySelector("time").textContent = postObj.date;
-        article.querySelector("p").textContent = postObj.summary;
+        post.querySelector("h2").textContent = postObj.title;
+        post.querySelector("time").textContent = postObj.date;
+        post.querySelector("p").textContent = postObj.summary;
       }
     });
   });
 
-  let deleteButton = article.querySelector("#delete");
+  let deleteButton = post.querySelector(".delete");
   deleteButton.addEventListener("click", () => {
     const message = "Are you sure you want to delete this blog post?";
     const dialog = BlogDialog.createDelete(message);
@@ -59,12 +59,12 @@ function createPost(postObj) {
     dialog.addEventListener("close", () => {
       if (dialog.returnValue === "delete") {
         deletePost(postObj);
-        article.remove();
+        post.remove();
       }
     });
   });
 
-  return article;
+  return post;
 }
 
 function deletePost(postObj) {
