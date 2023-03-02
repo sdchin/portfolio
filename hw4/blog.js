@@ -33,35 +33,12 @@ function createPost(postObj) {
 
   let editButton = post.querySelector(".edit");
   editButton.addEventListener("click", () => {
-    const message = "Edit the fields and click confirm when you're done.";
-    const dialog = BlogDialog.createEdit(message, postObj);
-    dialog.showModal();
-
-    dialog.addEventListener("close", () => {
-      if (dialog.returnValue === "ok") {
-        postObj.title = dialog.querySelector("#newtitle").value;
-        postObj.date = dialog.querySelector("#newdate").value;
-        postObj.summary = dialog.querySelector("#newsummary").value;
-
-        post.querySelector("h2").textContent = postObj.title;
-        post.querySelector("time").textContent = postObj.date;
-        post.querySelector("p").textContent = postObj.summary;
-      }
-    });
+    editHandler(post, postObj);
   });
 
   let deleteButton = post.querySelector(".delete");
   deleteButton.addEventListener("click", () => {
-    const message = "Are you sure you want to delete this blog post?";
-    const dialog = BlogDialog.createDelete(message);
-    dialog.showModal();
-
-    dialog.addEventListener("close", () => {
-      if (dialog.returnValue === "delete") {
-        deletePost(postObj);
-        post.remove();
-      }
-    });
+    deleteHandler(post, postObj);
   });
 
   return post;
@@ -80,4 +57,35 @@ function storePost(postObj) {
     }
   }
   localStorage.setItem(postObj.id, JSON.stringify(postObj));
+}
+
+function editHandler(post, postObj) {
+  const message = "Edit the fields and click confirm when you're done.";
+  const dialog = BlogDialog.createEdit(message, postObj);
+  dialog.showModal();
+
+  dialog.addEventListener("close", () => {
+    if (dialog.returnValue === "ok") {
+      postObj.title = dialog.querySelector("#newtitle").value;
+      postObj.date = dialog.querySelector("#newdate").value;
+      postObj.summary = dialog.querySelector("#newsummary").value;
+
+      post.querySelector("h2").textContent = postObj.title;
+      post.querySelector("time").textContent = postObj.date;
+      post.querySelector("p").textContent = postObj.summary;
+    }
+  });
+}
+
+function deleteHandler(post, postObj) {
+  const message = "Are you sure you want to delete this blog post?";
+  const dialog = BlogDialog.createDelete(message);
+  dialog.showModal();
+
+  dialog.addEventListener("close", () => {
+    if (dialog.returnValue === "delete") {
+      deletePost(postObj);
+      post.remove();
+    }
+  });
 }
