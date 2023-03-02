@@ -84,6 +84,7 @@ function editHandler(post, postObj) {
     if (dialog.returnValue === "ok") {
       editPost(post, postObj, dialog);
     }
+    dialog.remove();
   });
 }
 
@@ -97,5 +98,6 @@ function deleteHandler(post, postObj) {
       deletePost(postObj);
       post.remove();
     }
+    dialog.remove();
   });
 }
