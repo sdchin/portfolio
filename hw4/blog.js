@@ -1,23 +1,20 @@
 import { Post } from "./Post.js";
 import * as BlogDialog from "./blogdialog.js";
 
-let defaultArray = new Array();
-defaultArray.push(new Post("Cats", "2023-01-01", "I love this movie!"));
-defaultArray.push(new Post("JavaScript", "2023-03-01", "GRR!"));
-defaultArray.push(new Post("Bananas", "2019-02-04", "Fave! Yum!"));
-
-for (const postObj of defaultArray) {
-  storePost(postObj);
-}
-
 window.addEventListener("DOMContentLoaded", init);
 
 function init() {
-  populatePage(defaultArray);
+  prepopulate();
 }
 
-function populatePage(posts) {
-  for (let postObj of posts) {
+function prepopulate() {
+  let defaultPosts = new Array();
+  defaultPosts.push(new Post("Cats", "2023-01-01", "I love this movie!"));
+  defaultPosts.push(new Post("JavaScript", "2023-03-01", "GRR!"));
+  defaultPosts.push(new Post("Bananas", "2019-02-04", "Fave! Yum!"));
+
+  for (let postObj of defaultPosts) {
+    storePost(postObj);
     let post = createPost(postObj);
     document.body.prepend(post);
   }
