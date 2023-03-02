@@ -44,6 +44,22 @@ function createPost(postObj) {
   return post;
 }
 
+function editPost(post, postObj, dialog) {
+  postObj.title = dialog.querySelector("#newtitle").value;
+  postObj.date = dialog.querySelector("#newdate").value;
+  postObj.summary = dialog.querySelector("#newsummary").value;
+
+  post.querySelector("h2").textContent = postObj.title;
+  post.querySelector("time").textContent = postObj.date;
+  post.querySelector("p").textContent = postObj.summary;
+
+  let localObj = JSON.parse(localStorage.getItem(postObj.id));
+  localObj.title = postObj.title;
+  localObj.date = postObj.date;
+  localObj.summary = postObj.summary;
+  localStorage.setItem(localObj.id, JSON.stringify(localObj));
+}
+
 function deletePost(postObj) {
   localStorage.removeItem(postObj.id);
 }
@@ -66,13 +82,7 @@ function editHandler(post, postObj) {
 
   dialog.addEventListener("close", () => {
     if (dialog.returnValue === "ok") {
-      postObj.title = dialog.querySelector("#newtitle").value;
-      postObj.date = dialog.querySelector("#newdate").value;
-      postObj.summary = dialog.querySelector("#newsummary").value;
-
-      post.querySelector("h2").textContent = postObj.title;
-      post.querySelector("time").textContent = postObj.date;
-      post.querySelector("p").textContent = postObj.summary;
+      editPost(post, postObj, dialog);
     }
   });
 }
