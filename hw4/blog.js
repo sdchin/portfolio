@@ -70,8 +70,8 @@ function createPost(postObj) {
   return article;
 }
 
-function deletePost(target) {
-  defaultArray = defaultArray.filter((postObj) => postObj !== target);
+function deletePost(postObj) {
+  localStorage.removeItem(postObj.id);
 }
 
 function storePost(postObj) {
