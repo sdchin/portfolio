@@ -1,6 +1,10 @@
 import { Post } from "./Post.js";
 import * as BlogDialog from "./blogdialog.js";
 
+const ADD_MESSAGE = "Fill in the fields and click confirm when you're done.";
+const EDIT_MESSAGE = "Edit the fields and click confirm when you're done.";
+const DELETE_MESSAGE = "Are you sure you want to delete this blog post?";
+
 window.addEventListener("DOMContentLoaded", init);
 
 function init() {
@@ -76,8 +80,7 @@ function storePost(postObj) {
 }
 
 function addHandler() {
-  const message = "Fill in the fields and click confirm when you're done.";
-  const dialog = BlogDialog.createAdd(message);
+  const dialog = BlogDialog.createAdd(ADD_MESSAGE);
   dialog.showModal();
 
   dialog.addEventListener("close", () => {
@@ -94,8 +97,7 @@ function addHandler() {
 }
 
 function editHandler(post, postObj) {
-  const message = "Edit the fields and click confirm when you're done.";
-  const dialog = BlogDialog.createEdit(message, postObj);
+  const dialog = BlogDialog.createEdit(EDIT_MESSAGE, postObj);
   dialog.showModal();
 
   dialog.addEventListener("close", () => {
@@ -107,8 +109,7 @@ function editHandler(post, postObj) {
 }
 
 function deleteHandler(post, postObj) {
-  const message = "Are you sure you want to delete this blog post?";
-  const dialog = BlogDialog.createDelete(message);
+  const dialog = BlogDialog.createDelete(DELETE_MESSAGE);
   dialog.showModal();
 
   dialog.addEventListener("close", () => {
