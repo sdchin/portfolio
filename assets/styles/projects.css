@@ -53,11 +53,6 @@ footer {
   justify-content: center;
 }
 
-.featured {
-  display: flex;
-  justify-content: center;
-}
-
 .project-grid {
   display: grid;
   gap: 50px;
