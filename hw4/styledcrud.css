@@ -1,0 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+
+* {
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(50ch, 1fr));
+  padding: 0 20vw;
+}
+
+article {
+  align-items: center;
+  border: 2px solid black;
+  border-radius: 10px;
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
+  justify-items: center;
+}
+
+article > p {
+  justify-self: start;
+  text-indent: 20px;
+}
+
+dialog {
+  display: grid;
+  grid-template-rows: repeat(9, 1fr);
+}
