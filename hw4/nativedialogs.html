@@ -10,9 +10,10 @@
     <button id="alert">Alert</button>
     <button id="confirm">Confirm</button>
     <button id="prompt">Prompt</button>
-    <button>Safer Prompt</button>
+    <button id="safer">Safer Prompt</button>
     <output id="output"></output>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.1/purify.js"></script>
     <script type="module">
       window.addEventListener("DOMContentLoaded", init);
 
@@ -20,6 +21,7 @@
         addAlertListener();
         addConfirmListener();
         addPromptListener();
+        addSaferPromptListener();
       }
 
       function addAlertListener() {
@@ -61,6 +63,26 @@
             const noInputMessage = "User didn't enter anything";
             const outputMessage = userInput
               ? `Prompt result : ${userInput}`
+              : noInputMessage;
+            output.innerHTML = outputMessage;
+          }, delay);
+        });
+      }
+
+      function addSaferPromptListener() {
+        let saferButton = document.getElementById("safer");
+        saferButton.addEventListener("click", () => {
+          const output = document.getElementById("output");
+          output.textContent = "";
+
+          const delay = 10;
+          setTimeout(() => {
+            const promptMessage = "Type something: ";
+            let userInput = window.prompt(promptMessage);
+
+            const noInputMessage = "User didn't enter anything";
+            const outputMessage = userInput
+              ? DOMPurify.sanitize(`Prompt result : ${userInput}`)
               : noInputMessage;
             output.innerHTML = outputMessage;
           }, delay);

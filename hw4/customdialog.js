@@ -118,7 +118,7 @@ function addSaferPromptListener() {
 
       const noInputMessage = "User didn't enter anything";
       const outputMessage = userInput
-        ? DOMPurify.sanitize`Prompt result : ${userInput}`
+        ? DOMPurify.sanitize(`Prompt result : ${userInput}`)
         : noInputMessage;
       output.innerHTML = outputMessage;
     }, delay);
