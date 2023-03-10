@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTTP with JavaScript</title>
+</head>
+<body>
+  <p>Fill out the following fields and select an HTTP method.</p>
+  <form>
+    <label for="id">Record ID</label>
+    <input type="number" id="id" name="id" />
+
+    <label for="article_name">Article Name</label>
+    <input type="text" id="article_name" name="article_name" />
+
+    <label for="article_body">Article Content</label>
+    <textarea id="article_body" name="article_body"></textarea>
+
+    <input type="hidden" id="date" name="date" />
+
+    <button type="button" id="postBtn">Post</button>
+    <button type="button" id="getBtn">Get</button>
+    <button type="button" id="putBtn">Put</button>
+    <button type="button" id="deleteBtn">Delete</button>
+  </form>
+</body>
+</html>
