@@ -8,7 +8,7 @@
 </head>
 <body>
   <p>Fill out the following fields and select an HTTP method.</p>
-  <form>
+  <form id="form">
     <label for="id">Record ID</label>
     <input type="number" id="id" name="id" />
 
@@ -25,5 +25,62 @@
     <button type="button" id="putBtn">Put</button>
     <button type="button" id="deleteBtn">Delete</button>
   </form>
+  <script>
+    async function sendRequest(e) {
+      let action;
+      let method;
+
+      let form = document.getElementById('form');
+      let body = new FormData(form);
+      let resp;
+
+      switch (e.target.id) {
+        case 'postBtn':
+          action = 'https://httpbin.org/post';
+          method =  'POST';
+          break;
+        case 'getBtn':
+          let qString = new URLSearchParams(body).toString();
+          action = `https://httpbin.org/get?${qString}`;
+          method = 'GET';
+          break;
+        case 'putBtn':
+          action = 'https://httpbin.org/put';
+          method = 'PUT';
+          break;
+        case 'deleteBtn':
+          action = 'https://httpbin.org/delete';
+          method = 'DELETE';
+          break;
+        default:
+          console.log("Error: Cannot send request.");
+          break;
+      }
+
+      if (e.target.id === 'getBtn' || e.target.id === 'deleteBtn') {
+        resp = await fetch(action, {method});
+      } else {
+        resp = await fetch(action, {method, body});
+      }
+      if (!resp.ok) {
+        console.log(resp);
+        return {};
+      }
+
+      const data = await resp.json();
+      console.log(data);
+      return data;
+    }
+
+    const postBtn = document.getElementById('postBtn');
+    const getBtn = document.getElementById('getBtn');
+    const putBtn = document.getElementById('putBtn');
+    const deleteBtn = document.getElementById('deleteBtn');
+
+    postBtn.addEventListener('click', sendRequest);
+    getBtn.addEventListener('click', sendRequest);
+    putBtn.addEventListener('click', sendRequest);
+    deleteBtn.addEventListener('click', sendRequest);
+  </script>
 </body>
 </html>
