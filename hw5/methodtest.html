@@ -31,7 +31,11 @@
       let method;
 
       let form = document.getElementById('form');
+      let date = new Date().toISOString();
+      form.querySelector('#date').value = date;
+
       let body = new FormData(form);
+      
       let resp;
 
       switch (e.target.id) {
