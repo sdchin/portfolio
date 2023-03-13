@@ -88,6 +88,8 @@
   </footer>
   <script>
     async function sendRequest(e) {
+      const WRONG_SELECT = "Must select POST, GET, PUT, or DELETE.";
+
       let form = document.getElementById('form');
       let date = new Date().toISOString();
       form.querySelector('#date').value = date;
@@ -98,9 +100,10 @@
       
       let action;
       let method;
-      switch (e.target.id) {
+      let selected = e.target.id;
+      switch (selected) {
         case 'postBtn':
-          action = 'https://httpbin.org/post';
+          action = 'https://httpbin.org/posadadadt';
           method =  'POST';
           break;
         case 'getBtn':
@@ -116,22 +119,31 @@
           method = 'DELETE';
           break;
         default:
-          console.log("Error: Cannot send request.");
-          break;
+          const err = new RangeError(WRONG_SELECT);
+          console.error(err, err.stack);
+          return {};
       }
       
-      let options = (e.target.id === 'getBtn' || e.target.id === 'deleteBtn') ? {method} : {method, body};
-      let resp = await fetch(action, options);
-      if (!resp.ok) {
-        console.log(resp);
+      let options = (selected === 'getBtn' || selected === 'deleteBtn') ? {method} : {method, body};
+
+      try {
+        let resp = await fetch(action, options);
+        if (!resp.ok) {
+          displayError();
+          return {};
+        }
+        const data = await resp.json();
+        return data;
+      } catch (err) {
+        displayError();
+        console.error(err, err.stack);
         return {};
       }
+    }
 
-      const data = await resp.json();
-      console.log(data);
-      const string = JSON.stringify(data, null, '\t');
-      console.log(string);
-      return data;
+    function displayError() {
+      const DISPLAY_ERROR = 'Oops! Something went wrong. Please check your connection and try again.';
+      alert(DISPLAY_ERROR);
     }
 
     function helper(obj, key, indent) {
