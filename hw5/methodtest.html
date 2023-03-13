@@ -57,6 +57,7 @@
       <button type="button" id="putBtn">Put</button>
       <button type="button" id="deleteBtn">Delete</button>
     </form>
+    <output id="response"></output>
   </main>
   <footer>
     <address>
@@ -87,9 +88,6 @@
   </footer>
   <script>
     async function sendRequest(e) {
-      let action;
-      let method;
-
       let form = document.getElementById('form');
       let date = new Date().toISOString();
       form.querySelector('#date').value = date;
@@ -98,8 +96,8 @@
       let body = new URLSearchParams(formData).toString();
       let qString = body;
       
-      let resp;
-
+      let action;
+      let method;
       switch (e.target.id) {
         case 'postBtn':
           action = 'https://httpbin.org/post';
@@ -121,12 +119,9 @@
           console.log("Error: Cannot send request.");
           break;
       }
-
-      if (e.target.id === 'getBtn' || e.target.id === 'deleteBtn') {
-        resp = await fetch(action, {method});
-      } else {
-        resp = await fetch(action, {method, body});
-      }
+      
+      let options = (e.target.id === 'getBtn' || e.target.id === 'deleteBtn') ? {method} : {method, body};
+      let resp = await fetch(action, options);
       if (!resp.ok) {
         console.log(resp);
         return {};
@@ -134,7 +129,37 @@
 
       const data = await resp.json();
       console.log(data);
+      const string = JSON.stringify(data, null, '\t');
+      console.log(string);
       return data;
+    }
+
+    function helper(obj, key, indent) {
+      const output = document.getElementById('response');
+
+      if (!(typeof obj[key] === 'object')) {
+        const markup = document.createElement('pre');
+        markup.innerHTML = `${`\t`.repeat(indent)}${key}: ${obj[key]}`;
+        output.append(markup);
+        return;
+      }
+
+      const markup = document.createElement('pre');
+      markup.innerHTML = `${`\t`.repeat(indent)}${key}:`;
+      output.append(markup);
+
+      for (const k in obj[key]) {
+        helper(obj[key], k, indent + 1);
+      }
+    }
+
+    function render(json) {
+      const output = document.getElementById('response');
+      output.innerHTML = '';
+
+      for (const key in json) {
+        helper(json, key, 0);
+      }
     }
 
     const postBtn = document.getElementById('postBtn');
@@ -142,10 +167,18 @@
     const putBtn = document.getElementById('putBtn');
     const deleteBtn = document.getElementById('deleteBtn');
 
-    postBtn.addEventListener('click', sendRequest);
-    getBtn.addEventListener('click', sendRequest);
-    putBtn.addEventListener('click', sendRequest);
-    deleteBtn.addEventListener('click', sendRequest);
+    postBtn.addEventListener('click', async (e) => {
+      render(await sendRequest(e));
+    });
+    getBtn.addEventListener('click', async (e) => {
+      render(await sendRequest(e));
+    });
+    putBtn.addEventListener('click', async (e) => {
+      render(await sendRequest(e));
+    });
+    deleteBtn.addEventListener('click', async (e) => {
+      render(await sendRequest(e));
+    });
   </script>
 </body>
 </html>
