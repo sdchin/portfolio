@@ -162,22 +162,11 @@
       }
     }
 
-    const postBtn = document.getElementById('postBtn');
-    const getBtn = document.getElementById('getBtn');
-    const putBtn = document.getElementById('putBtn');
-    const deleteBtn = document.getElementById('deleteBtn');
-
-    postBtn.addEventListener('click', async (e) => {
-      render(await sendRequest(e));
-    });
-    getBtn.addEventListener('click', async (e) => {
-      render(await sendRequest(e));
-    });
-    putBtn.addEventListener('click', async (e) => {
-      render(await sendRequest(e));
-    });
-    deleteBtn.addEventListener('click', async (e) => {
-      render(await sendRequest(e));
+    const buttons = document.querySelectorAll('#form button');
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', async (e) => {
+        render(await sendRequest(e));
+      })
     });
   </script>
 </body>
