@@ -7,6 +7,42 @@
   <title>HTTP with JavaScript</title>
   <link rel="icon" href="/assets/images/logo.svg" />
   <link rel="stylesheet" href="/assets/styles/index.css" />
+  <style>
+    main {
+      display: flex;
+      flex-direction: column;
+    }
+
+    #form {
+      align-items: center;
+      align-self: center;
+      display: grid;
+      gap: 15px;
+      grid-template-rows: repeat(7, max-content);
+      justify-items: start;
+      min-width: 50ch;
+    }
+
+    #id,
+    #article_name,
+    #article_body {
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    #article_body {
+      min-height: 20ch;
+      resize: none;
+    }
+
+    .form-buttons {
+      justify-self: center;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      width: 100%;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -39,6 +75,7 @@
     </nav>
   </header>
   <main>
+    <h1>HTTP with JS</h1>
     <p>Fill out the following fields and select an HTTP method.</p>
     <form id="form">
       <label for="id">Record ID</label>
@@ -52,10 +89,12 @@
 
       <input type="hidden" id="date" name="date" />
 
-      <button type="button" id="postBtn">Post</button>
-      <button type="button" id="getBtn">Get</button>
-      <button type="button" id="putBtn">Put</button>
-      <button type="button" id="deleteBtn">Delete</button>
+      <div class="form-buttons">
+        <button type="button" id="postBtn">Post</button>
+        <button type="button" id="getBtn">Get</button>
+        <button type="button" id="putBtn">Put</button>
+        <button type="button" id="deleteBtn">Delete</button>
+      </div>    
     </form>
     <output id="response"></output>
   </main>
