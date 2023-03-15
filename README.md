@@ -6,8 +6,7 @@ This website is part of a school assignment for CSE 134B, Web Client Languages W
 
 ## Learning Goals
 
-1. JavaScript: Events, Event Loop, Modules, localStorage, template strings, DOMPurify
-2. CRUD
-3. Third-Party JS analytics/search/content inclusion
+1. HTTP with JS: Fetch
+2. Web Components with JS
 
-Last updated: 02/28/2023
+Last updated: 03/15/2023
