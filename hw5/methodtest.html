@@ -42,6 +42,12 @@
       gap: 10px;
       width: 100%;
     }
+
+    #response-list {
+      border: 1px solid #000;
+      overflow: auto;
+      padding: 10px;
+    }
   </style>
 </head>
 <body>
@@ -185,22 +191,23 @@
       alert(DISPLAY_ERROR);
     }
 
-    function helper(obj, key, indent) {
-      const output = document.getElementById('response');
+    function format(obj, key, list) {
+      const isObj = typeof obj[key] === 'object';
+      const markup = document.createElement('li');
 
-      if (!(typeof obj[key] === 'object')) {
-        const markup = document.createElement('pre');
-        markup.innerHTML = `${`\t`.repeat(indent)}${key}: ${obj[key]}`;
-        output.append(markup);
+      if (!isObj) {
+        markup.innerHTML = `${key}: ${obj[key]}`;
+        list.append(markup);
         return;
-      }
+      } 
 
-      const markup = document.createElement('pre');
-      markup.innerHTML = `${`\t`.repeat(indent)}${key}:`;
-      output.append(markup);
+      markup.innerHTML = `${key}:`; 
+      const sublist = document.createElement('ul');
+      markup.append(sublist);
+      list.append(markup);
 
       for (const k in obj[key]) {
-        helper(obj[key], k, indent + 1);
+        format(obj[key], k, sublist);
       }
     }
 
@@ -208,8 +215,12 @@
       const output = document.getElementById('response');
       output.innerHTML = '';
 
+      const outer = document.createElement('ul');
+      outer.id = 'response-list';
+      output.append(outer);
+
       for (const key in json) {
-        helper(json, key, 0);
+        format(json, key, outer);
       }
     }
 
